@@ -1,11 +1,19 @@
+body.is-locked {
+    overflow: hidden;
+}
+
+.--cursor-locked {
+    cursor: not-allowed;
+}
+
 #overlay {
     width: 100vw;
     max-width: 100%; // scrollbar is excluded
-    height: 100vh;
+height: 100vh;
 
     position: fixed;
     z-index: -1; // starts off underneath every other elements
-    top: 0;
+top: 0;
     left: 0;
 
     opacity: 0;
