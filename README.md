@@ -9,12 +9,23 @@ Works on modern browsers only (uses es6 modules and css custom properties)
 
 On page load, Overlay Basis creates and appends an `#overlay` element on the DOM.
 
-To create and use the overlay component in your project, import and initialize the library:
+You need to add Overlay Basis stylesheet to your own (change this examples with your file path):
+
+if you use less or sass:
+
+`@import '~overlay-basis/src/overlay';`
+
+or directly in your html file:
+
+`<link rel="stylesheet" href="stylesheets/overlay.css">`
+
+To create and use the overlay component in your project, import and initialize the library in your javascript file:
+
 ```typescript
-import Overlay from 'overlay-basis/src/scripts/overlay';
+import Overlay from 'overlay-basis/src/overlay';
 let overlay = new Overlay();
 overlay.init()
-```
+``` 
 
 You can then use its methods:
 
