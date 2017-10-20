@@ -1,0 +1,22 @@
+{
+  "name": "overlay-basis",
+  "version": "0.0.1",
+  "description": "Simple overlay component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergemazille/overlay-basis.git"
+  },
+  "keywords": [
+    "overlay"
+  ],
+  "author": "Serge Mazille",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergemazille/overlay-basis/issues"
+  },
+  "homepage": "https://github.com/sergemazille/overlay-basis#readme"
+}
