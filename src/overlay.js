@@ -1,17 +1,3 @@
-/*
-* to create and use the overlay component in your project, import and initialize the library:
-*
-* import Overlay from 'overlay-basis/src/scripts/overlay';
-* let overlay = new Overlay();
-* overlay.init()
-*
-* you can then use its methods:
-*
-* overlay.lock();
-* overlay.show();
-* overlay.hide();
-*/
-
 let overlay;
 let body;
 let locked = false;
