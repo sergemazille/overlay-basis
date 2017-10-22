@@ -1,6 +1,5 @@
 let overlay;
 let body;
-let locked = false;
 
 export default class {
 
@@ -23,19 +22,16 @@ export default class {
     }
 
     init () {
-        registerEvents(overlay, this);
+        registerEvents(overlay);
     }
 
     show () {
 
-        if (locked) {
+        // forbid body to be scrollable
+        body.classList.add('is-locked');
 
-            // forbid body to be scrollable
-            body.classList.add('is-locked');
-
-            // overlay won't be clickable until 'transitionend' event
-            overlay.classList.add('--cursor-locked');
-        }
+        // overlay won't be clickable until 'transitionend' event
+        overlay.classList.add('--cursor-locked');
 
         // display overlay
         overlay.classList.add('is-visible');
@@ -56,16 +52,11 @@ export default class {
     lock () {
 
         // overlay will remain locked after transition
-        locked = true;
+        overlay.classList.add('is-locked');
     }
 }
 
-/*
-* @param overlay: node
-* @param Overlay: class
-*/
-
-function registerEvents (overlay, Overlay) {
+function registerEvents (overlay) {
 
     // watch for transition end
     overlay.addEventListener('transitionend', () => {
@@ -74,26 +65,16 @@ function registerEvents (overlay, Overlay) {
         if (! overlay.classList.contains('is-visible')) {
             overlay.classList.remove('is-locked');
             overlay.classList.remove('--cursor-locked');
-            locked = false;
         }
 
         // overlay is visible: remove temporary transitioning lock (unless overlay is locked)
-        if (overlay.classList.contains('is-visible') && ! locked) {
-            overlay.classList.remove('is-locked');
+        if (overlay.classList.contains('is-visible') && ! overlay.classList.contains('is-locked')) {
+            overlay.classList.remove('--cursor-locked');
         }
 
         // overlay is visible: add locked cursor icon if need be
-        if (overlay.classList.contains('is-visible') && locked) {
+        if (overlay.classList.contains('is-visible') && overlay.classList.contains('is-locked')) {
             overlay.classList.add('--cursor-locked');
         }
-    });
-
-    // dismiss on click if not locked
-    overlay.addEventListener('click', () => {
-        if (locked) {
-            return;
-        }
-
-        Overlay.hide();
     });
 }
