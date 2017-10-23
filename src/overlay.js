@@ -79,16 +79,19 @@ function registerEvents (overlay, Overlay) {
         if (! overlay.classList.contains('is-visible')) {
             overlay.classList.remove('is-locked');
             overlay.classList.remove('--cursor-locked');
+            overlay.dispatchEvent(new Event('hidden'));
         }
 
-        // overlay is visible: remove temporary transitioning lock (unless overlay is locked)
-        if (overlay.classList.contains('is-visible') && ! overlay.classList.contains('is-locked')) {
-            overlay.classList.remove('--cursor-locked');
-        }
+        // overlay is visible
+        if (overlay.classList.contains('is-visible')) {
 
-        // overlay is visible: add locked cursor icon if need be
-        if (overlay.classList.contains('is-visible') && overlay.classList.contains('is-locked')) {
-            overlay.classList.add('--cursor-locked');
+            if (overlay.classList.contains('is-locked')) {
+                overlay.classList.add('--cursor-locked');
+            } else {
+                overlay.classList.remove('--cursor-locked');
+            }
+
+            overlay.dispatchEvent(new Event('shown'));
         }
     });
 }
