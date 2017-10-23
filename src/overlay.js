@@ -67,6 +67,7 @@ function registerEvents (overlay, Overlay) {
 
         // else hide overlay
         Overlay.hide();
+        overlay.dispatchEvent(new Event('hiding'));
     });
 
     // watch for transition end
