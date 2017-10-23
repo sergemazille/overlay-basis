@@ -16,7 +16,7 @@ export default class {
             body = document.querySelector('body');
             body.appendChild(overlay);
 
-            registerEvents(overlay);
+            registerEvents(overlay, this);
 
         } else {
             return this;
@@ -58,7 +58,19 @@ export default class {
     }
 }
 
-function registerEvents (overlay) {
+function registerEvents (overlay, Overlay) {
+
+    // click event
+    overlay.addEventListener('click', () => {
+
+        // do nothing if overlay is locked
+        if (overlay.classList.contains('is-locked')) {
+            return;
+        }
+
+        // else hide overlay
+        Overlay.hide();
+    });
 
     // watch for transition end
     overlay.addEventListener('transitionend', () => {
