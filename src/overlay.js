@@ -16,13 +16,11 @@ export default class {
             body = document.querySelector('body');
             body.appendChild(overlay);
 
+            registerEvents(overlay);
+
         } else {
             return this;
         }
-    }
-
-    init () {
-        registerEvents(overlay);
     }
 
     show () {
