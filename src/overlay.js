@@ -32,9 +32,6 @@ export default class {
         // forbid body to be scrollable
         body.classList.add('is-locked');
 
-        // overlay won't be clickable until 'transitionend' event
-        overlay.classList.add('--cursor-locked');
-
         // display overlay
         overlay.classList.add('is-visible');
     }
@@ -87,8 +84,6 @@ function registerEvents (overlay, Overlay) {
 
             if (overlay.classList.contains('is-locked')) {
                 overlay.classList.add('--cursor-locked');
-            } else {
-                overlay.classList.remove('--cursor-locked');
             }
 
             overlay.dispatchEvent(new Event('shown'));
