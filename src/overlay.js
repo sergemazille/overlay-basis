@@ -23,6 +23,10 @@ export default class {
         }
     }
 
+    get domElement () {
+        return overlay;
+    }
+
     show () {
 
         // forbid body to be scrollable
