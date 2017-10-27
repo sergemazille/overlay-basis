@@ -1,3 +1,4 @@
+let overlaySingleton;
 let overlay;
 let body;
 
@@ -6,22 +7,22 @@ export default class {
     constructor () {
 
         // avoid multiple declarations
-        if (! overlay) {
+        if (! overlaySingleton) {
 
             // create an #overlay element...
-            if (! document.querySelector('#overlay')) {
-                overlay = document.createElement('div');
-                overlay.setAttribute('id', 'overlay');
+            overlay = document.createElement('div');
+            overlay.setAttribute('id', 'overlay');
 
-                // ...and append it on DOM
-                body = document.querySelector('body');
-                body.appendChild(overlay);
-            }
+            // ...and append it on DOM
+            body = document.querySelector('body');
+            body.appendChild(overlay);
 
-            registerEvents(overlay, this);
+            overlaySingleton = this;
+
+            registerEvents(overlay, overlaySingleton);
 
         } else {
-            return this;
+            return overlaySingleton;
         }
     }
 
@@ -57,7 +58,7 @@ export default class {
     }
 }
 
-function registerEvents (overlay, Overlay) {
+function registerEvents (overlay, overlaySingleton) {
 
     // click event
     overlay.addEventListener('click', () => {
@@ -68,7 +69,7 @@ function registerEvents (overlay, Overlay) {
         }
 
         // else hide overlay
-        Overlay.hide();
+        overlaySingleton.hide();
         overlay.dispatchEvent(new Event('hiding'));
     });
 
