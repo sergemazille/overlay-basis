@@ -9,12 +9,14 @@ export default class {
         if (! overlay) {
 
             // create an #overlay element...
-            overlay = document.createElement('div');
-            overlay.setAttribute('id', 'overlay');
+            if (! document.querySelector('#overlay')) {
+                overlay = document.createElement('div');
+                overlay.setAttribute('id', 'overlay');
 
-            // ...and append it on DOM
-            body = document.querySelector('body');
-            body.appendChild(overlay);
+                // ...and append it on DOM
+                body = document.querySelector('body');
+                body.appendChild(overlay);
+            }
 
             registerEvents(overlay, this);
 
